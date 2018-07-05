@@ -3,12 +3,12 @@ const express = require('express');
 const http = require('http');
 
 const port = process.env.INTER_SERVER_PORT || 8686;
-const serverAddress = process.env.SERVER_ADDR || 'ws://localhost:8585';
+const serverAddress = process.env.SERVER_ADDR || 'ws://localhost:8585/ws';
 
 const app = express();
 
 const server = http.createServer(app);
-const wss = new WebSocket.Server({server});
+const wss = new WebSocket.Server({server, path:"/ws"});
 
 app.get('/ping', (req, res) => res.send('pong'));
 

@@ -12,7 +12,7 @@
         <div id="notification"></div>
     </body>
     <script>
-        var ws = new WebSocket("ws://localhost:8686");
+        var ws = new WebSocket("ws://localhost:8585");
         var notificationDiv = document.getElementById("notification");
         ws.onopen = function(){
             notificationDiv.innerHTML = "connected"

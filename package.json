@@ -1,0 +1,14 @@
+{
+  "name": "ws-scaling-demo",
+  "version": "1.0.0",
+  "description": "this repo is for testing websocket scaling",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^5.2.1"
+  }
+}

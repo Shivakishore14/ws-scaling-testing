@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=UTF-8>
+        <title>Tomcat WebSocket Chat</title>
+    </head>
+    <body>
+        <textarea id="chatlog" readonly></textarea><br/>
+        <input id="msg" type="text" />
+        <button type="submit" id="sendButton" onClick="postToServer()">Send!</button>
+        <button type="submit" id="sendButton" onClick="closeConnect()">End</button>
+        <div id="notification"></div>
+    </body>
+    <script>
+        var ws = new WebSocket("ws://localhost:8686");
+        var notificationDiv = document.getElementById("notification");
+        ws.onopen = function(){
+            notificationDiv.innerHTML = "connected"
+        };
+        ws.onmessage = function(message){
+            document.getElementById("chatlog").textContent += message.data + "\n";
+        };
+        ws.onclose = function(){
+            notificationDiv.innerHTML = "closed";
+        }
+        ws.onerror = function(err){
+            notificationDiv.innerHTML = "error check logs";
+            console.error(err);
+        }
+        function postToServer(){
+            ws.send(document.getElementById("msg").value);
+            document.getElementById("msg").value = "";
+        }
+        function closeConnect(){
+            notificationDiv.innerHTML = "closing"
+            ws.close();
+        }
+    </script>
+</html>
